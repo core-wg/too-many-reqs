@@ -82,6 +82,9 @@ Response Code 4.29, "Too Many Requests". The Max-Age option is used
 to indicate the number of seconds after which the server assumes it is
 OK for the client to retry the request.
 
+An action result payload (see Section 5.5.1 in {{RFC7252}}) can be
+sent by the server to give more guidance to the client, e.g., about
+the details of the overload situation.
 
 # CoAP Client Behavior
 
@@ -123,8 +126,8 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 
 This Response Code definition was originally part of the "Publish-
 Subscribe Broker for CoAP" document {{I-D.ietf-core-coap-pubsub}}.
-Author would like to thank Gyorgy Rethy, Klaus Hartke, and Sandor
-Katona for their contributions and reviews.
+Author would like to thank Carsten Bormann, Gyorgy Rethy, Klaus
+Hartke, and Sandor Katona for their contributions and reviews.
 
 
 --- back
