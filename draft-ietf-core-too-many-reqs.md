@@ -63,7 +63,7 @@ client. Therefore the back-off period applies only to similar
 requests. For the purpose of this document, a request is similar if it
 has the same method, Request-URI, and payload. Also if a client is
 sending a sequence of requests that are part of the same series
-(e.g., a set of  measurements to be processed by the server) they are
+(e.g., a set of measurements to be processed by the server) they are
 considered similar even if request payloads may be different.
 
 The 4.29 code is similar to the 5.03 "Service Unavailable" {{RFC7252}}
@@ -113,9 +113,9 @@ a server. For a server under attack it may be more appropriate to
 simply drop requests without responding.
 
 If a CoAP reply with the Too Many Requests Response Code is not
-authenticated and integrity protected, an attacker can attempt to spoof
-a reply and make the client wait for an extended period of time before
-trying again.
+authenticated and integrity protected, an attacker can attempt to
+spoof a reply and make the client wait for an extended period of time
+before trying again.
 
 
 # IANA Considerations {#iana}
