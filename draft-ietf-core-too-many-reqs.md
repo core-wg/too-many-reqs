@@ -55,7 +55,16 @@ and many codes are shared with similar semantics by both CoAP and
 HTTP. HTTP has the code "429" registered for "Too Many Requests"
 {{RFC6585}}.  This document registers a CoAP Response Code "4.29" for
 similar purpose and also defines use of the Max-Age option to indicate
-when a client can try the request again.
+a back-off period after which a client can try the request again.
+
+While server may not be able to response to a one kind of request, it
+may be able to respond to a different request, even from the same
+client. Therefore the back-off period applies only to similar
+requests. For the purpose of this document, a request is similar if it
+has the same method, Request-URI, and payload. Also if a client is
+sending a sequence of requests that are part of the same series
+(e.g., a set of  measurements to be processed by the server) they are
+considered similar even if request payloads may be different.
 
 The 4.29 code is similar to the 5.03 "Service Unavailable" {{RFC7252}}
 code in a way that the 5.03 code can also be used by a server to
@@ -89,7 +98,7 @@ the details of the overload situation.
 # CoAP Client Behavior
 
 If a client receives the 4.29 Response Code from a CoAP server to a
-request, it SHOULD NOT send the same request to the server before the
+request, it SHOULD NOT send similar request to the server before the
 time indicated in the Max-Age option has passed.
 
 A client MUST NOT rely on a server being able to send the 4.29
@@ -126,8 +135,9 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 
 This Response Code definition was originally part of the "Publish-
 Subscribe Broker for CoAP" document {{I-D.ietf-core-coap-pubsub}}.
-Author would like to thank Carsten Bormann, Gyorgy Rethy, Klaus
-Hartke, and Sandor Katona for their contributions and reviews.
+Author would like to thank Abhijan Bhattacharyya, Carsten Bormann,
+Gyorgy Rethy, Klaus Hartke, and Sandor Katona for their contributions
+and reviews.
 
 
 --- back
