@@ -57,14 +57,17 @@ HTTP. HTTP has the code "429" registered for "Too Many Requests"
 similar purpose and also defines use of the Max-Age option to indicate
 a back-off period after which a client can try the request again.
 
-While server may not be able to response to a one kind of request, it
-may be able to respond to a different request, even from the same
+While a server may not be able to response to a one kind of request,
+it may be able to respond to a different request, even from the same
 client. Therefore the back-off period applies only to similar
-requests. For the purpose of this document, a request is similar if it
-has the same method, Request-URI, and payload. Also if a client is
-sending a sequence of requests that are part of the same series
-(e.g., a set of measurements to be processed by the server) they are
-considered similar even if request payloads may be different.
+requests. For the purpose of this response code, a request is similar
+if it has the same method, Request-URI, and payload. Also if a client
+is sending a sequence of requests that are part of the same series
+(e.g., a set of measurements to be processed by the server) they can
+be considered similar even if request payloads or URIs may be
+different. Because request similarity is context-dependent, it is up
+to the application logic to decide how similar requests should be
+suppressed.
 
 The 4.29 code is similar to the 5.03 "Service Unavailable" {{RFC7252}}
 code in a way that the 5.03 code can also be used by a server to
