@@ -101,7 +101,7 @@ the details of the overload situation.
 # CoAP Client Behavior
 
 If a client receives the 4.29 Response Code from a CoAP server to a
-request, it SHOULD NOT send similar request to the server before the
+request, it SHOULD NOT send a similar request to the server before the
 time indicated in the Max-Age option has passed.
 
 A client MUST NOT rely on a server being able to send the 4.29
