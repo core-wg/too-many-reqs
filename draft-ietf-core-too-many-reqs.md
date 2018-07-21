@@ -58,7 +58,7 @@ similar purpose and also defines use of the Max-Age option to indicate
 a back-off period after which a client can try the request again.
 
 While a server may not be able to response to one kind of request, it
-may be able to respond to a request of different kind, even from the
+may be able to response to a request of different kind, even from the
 same client. Therefore the back-off period applies only to similar
 requests. For the purpose of this response code, a request is similar
 if it has the same method and Request-URI. Also if a client is sending
