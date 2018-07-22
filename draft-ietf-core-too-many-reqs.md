@@ -66,7 +66,7 @@ a sequence of requests that are part of the same series (e.g., a set
 of measurements to be processed by the server) they can be considered
 similar even if request URIs may be different. Because request
 similarity is context-dependent, it is up to the application logic to
-decide how similar requests should be suppressed.
+decide how the similarity of the requests should be evaluated.
 
 The 4.29 code is similar to the 5.03 "Service Unavailable" {{RFC7252}}
 code in a way that the 5.03 code can also be used by a server to
