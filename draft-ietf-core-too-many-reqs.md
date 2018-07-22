@@ -105,7 +105,7 @@ If a client receives the 4.29 Response Code from a CoAP server to a
 request, it SHOULD NOT send a similar request to the server before the
 time indicated in the Max-Age option has passed.
 
-Note that a client may receive a 4.29 Response Code already to a first
+Note that a client may receive a 4.29 Response Code already on a first
 request to a server. This can happen, for example, if there is a proxy
 on the path and the server replies based on aggregate load from
 multiple clients, or if a client has restarted recently and does not
