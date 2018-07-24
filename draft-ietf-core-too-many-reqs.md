@@ -146,8 +146,8 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 This Response Code definition was originally part of the "Publish-
 Subscribe Broker for CoAP" document {{I-D.ietf-core-coap-pubsub}}.
 Author would like to thank Abhijan Bhattacharyya, Carsten Bormann,
-Gyorgy Rethy, Klaus Hartke, and Sandor Katona for their contributions
-and reviews.
+Gyorgy Rethy, Jim Schaad, Klaus Hartke, and Sandor Katona for their
+contributions and reviews.
 
 
 --- back
