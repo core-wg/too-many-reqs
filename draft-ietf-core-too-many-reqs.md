@@ -113,7 +113,7 @@ and does not remember its recent requests.
 
 A client MUST NOT rely on a server being able to send the 4.29
 Response Code in an overload situation because an overloaded server
-may not be able to reply to all requests at all.
+may not be able to reply at all to some requests.
 
 
 # Security Considerations {#SecurityConsiderations}
@@ -146,8 +146,8 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 This Response Code definition was originally part of the "Publish-
 Subscribe Broker for CoAP" document {{I-D.ietf-core-coap-pubsub}}.
 Author would like to thank Abhijan Bhattacharyya, Carsten Bormann,
-Gyorgy Rethy, Jim Schaad, Klaus Hartke, and Sandor Katona for their
-contributions and reviews.
+Daniel Migault, Gyorgy Rethy, Jim Schaad, Klaus Hartke, and Sandor 
+Katona for their contributions and reviews.
 
 
 --- back
