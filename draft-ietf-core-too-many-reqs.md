@@ -123,10 +123,13 @@ Replying to CoAP requests with a Response Code consumes resources from
 a server. For a server under attack it may be more appropriate to
 simply drop requests without responding.
 
-If a CoAP reply with the Too Many Requests Response Code is not
-authenticated and integrity protected, an attacker can attempt to
-spoof a reply and make the client wait for an extended period of time
-before trying again.
+As with any other CoAP reply, a client should trust this Response
+Code only to extent it trusts the underlying security mechanisms
+(e.g., DTLS {{?RFC6347}}) for authentication and freshness. If a CoAP
+reply with the Too Many Requests Response Code is not authenticated
+and integrity protected, an attacker can attempt to spoof a reply and
+make the client wait for an extended period of time before trying
+again.
 
 
 # IANA Considerations {#iana}
