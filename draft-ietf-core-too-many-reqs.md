@@ -121,7 +121,7 @@ may not be able to reply at all to some requests.
 
 Replying to CoAP requests with a Response Code consumes resources from
 a server. For a server under attack it may be more appropriate to
-simply drop requests without responding.
+simply drop requests without responding at all.
 
 As with any other CoAP reply, a client should trust this Response
 Code only to extent it trusts the underlying security mechanisms
