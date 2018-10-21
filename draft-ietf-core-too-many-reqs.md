@@ -133,6 +133,10 @@ and integrity protected, an attacker can attempt to spoof a reply and
 make the client wait for an extended period of time before trying
 again.
 
+If the Response Code is sent without encryption, it may leak
+information about the server overload situation and client traffic
+patterns.
+
 
 # IANA Considerations {#iana}
 
