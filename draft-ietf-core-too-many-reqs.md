@@ -55,7 +55,7 @@ and many codes are shared with similar semantics by both CoAP and
 HTTP. HTTP has the code "429" registered for "Too Many Requests"
 {{RFC6585}}.  This document registers a CoAP Response Code "4.29" for
 similar purpose and also defines use of the Max-Age option  (see
-Section 5.10.5 in {{RFC7252}}) to indicate a back-off period after
+Section 5.10.5 of {{RFC7252}}) to indicate a back-off period after
 which a client can try the request again.
 
 While a server may not be able to respond to one kind of request, it
@@ -96,7 +96,7 @@ Response Code 4.29, "Too Many Requests". The Max-Age option is used
 to indicate the number of seconds after which the server assumes it is
 OK for the client to retry the request.
 
-An action result payload (see Section 5.5.1 in {{RFC7252}}) can be
+An action result payload (see Section 5.5.1 of {{RFC7252}}) can be
 sent by the server to give more guidance to the client, e.g., about
 the details of the overload situation.
 
