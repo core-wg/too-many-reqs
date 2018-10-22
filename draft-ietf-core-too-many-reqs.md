@@ -100,6 +100,15 @@ An action result payload (see Section 5.5.1 in {{RFC7252}}) can be
 sent by the server to give more guidance to the client, e.g., about
 the details of the overload situation.
 
+If a client repeats a request that was answered with 4.29 before Max-
+Age time has passed, it is possible the client did not recognize the
+error code and the server MAY respond with a more generic error code
+(e.g., 5.03). Server MAY also limit how often it answers to a client,
+e.g., to once every estimated RTT (if such estimate is available).
+However, both of these methods add per-client state to the server
+which may be counterproductive to reducing load.
+
+
 # CoAP Client Behavior
 
 If a client receives the 4.29 Response Code from a CoAP server to a
@@ -156,8 +165,8 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 This Response Code definition was originally part of the "Publish-
 Subscribe Broker for CoAP" document {{I-D.ietf-core-coap-pubsub}}.
 Author would like to thank Abhijan Bhattacharyya, Carsten Bormann,
-Daniel Migault, Gyorgy Rethy, Jim Schaad, Klaus Hartke, Mohit Sethi,
-and Sandor Katona for their contributions and reviews.
+Daniel Migault, Gyorgy Rethy, Jana Iyengar, Jim Schaad, Klaus Hartke,
+Mohit Sethi, and Sandor Katona for their contributions and reviews.
 
 
 --- back
