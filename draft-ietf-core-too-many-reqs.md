@@ -54,8 +54,9 @@ CoAP Response Codes are similar to the HTTP {{?RFC7230}} Status Codes
 and many codes are shared with similar semantics by both CoAP and
 HTTP. HTTP has the code "429" registered for "Too Many Requests"
 {{RFC6585}}.  This document registers a CoAP Response Code "4.29" for
-similar purpose and also defines use of the Max-Age option to indicate
-a back-off period after which a client can try the request again.
+similar purpose and also defines use of the Max-Age option  (see
+Section 5.10.5 of {{RFC7252}}) to indicate a back-off period after
+which a client can try the request again.
 
 While a server may not be able to respond to one kind of request, it
 may be able to respond to a request of different kind, even from the
@@ -95,9 +96,18 @@ Response Code 4.29, "Too Many Requests". The Max-Age option is used
 to indicate the number of seconds after which the server assumes it is
 OK for the client to retry the request.
 
-An action result payload (see Section 5.5.1 in {{RFC7252}}) can be
+An action result payload (see Section 5.5.1 of {{RFC7252}}) can be
 sent by the server to give more guidance to the client, e.g., about
 the details of the overload situation.
+
+If a client repeats a request that was answered with 4.29 before Max-
+Age time has passed, it is possible the client did not recognize the
+error code and the server MAY respond with a more generic error code
+(e.g., 5.03). Server MAY also limit how often it answers to a client,
+e.g., to once every estimated RTT (if such estimate is available).
+However, both of these methods add per-client state to the server
+which may be counterproductive to reducing load.
+
 
 # CoAP Client Behavior
 
@@ -113,19 +123,28 @@ and does not remember its recent requests.
 
 A client MUST NOT rely on a server being able to send the 4.29
 Response Code in an overload situation because an overloaded server
-may not be able to reply to all requests at all.
+may not be able to reply at all to some requests.
 
 
 # Security Considerations {#SecurityConsiderations}
 
 Replying to CoAP requests with a Response Code consumes resources from
 a server. For a server under attack it may be more appropriate to
-simply drop requests without responding.
+simply drop requests without responding at all. However, dropping
+requests is likely to cause also well-behaving clients to simply
+retry the requests.
 
-If a CoAP reply with the Too Many Requests Response Code is not
-authenticated and integrity protected, an attacker can attempt to
-spoof a reply and make the client wait for an extended period of time
-before trying again.
+As with any other CoAP reply, a client should trust this Response
+Code only to extent it trusts the underlying security mechanisms
+(e.g., DTLS {{?RFC6347}}) for authentication and freshness. If a CoAP
+reply with the Too Many Requests Response Code is not authenticated
+and integrity protected, an attacker can attempt to spoof a reply and
+make the client wait for an extended period of time before trying
+again.
+
+If the Response Code is sent without encryption, it may leak
+information about the server overload situation and client traffic
+patterns.
 
 
 # IANA Considerations {#iana}
@@ -146,8 +165,8 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 This Response Code definition was originally part of the "Publish-
 Subscribe Broker for CoAP" document {{I-D.ietf-core-coap-pubsub}}.
 Author would like to thank Abhijan Bhattacharyya, Carsten Bormann,
-Gyorgy Rethy, Jim Schaad, Klaus Hartke, and Sandor Katona for their
-contributions and reviews.
+Daniel Migault, Gyorgy Rethy, Jana Iyengar, Jim Schaad, Klaus Hartke,
+Mohit Sethi, and Sandor Katona for their contributions and reviews.
 
 
 --- back
