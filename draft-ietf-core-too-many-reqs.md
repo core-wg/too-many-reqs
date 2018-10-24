@@ -101,6 +101,11 @@ An action result payload (see Section 5.5.1 of {{RFC7252}}) can be
 sent by the server to give more guidance to the client, e.g., about
 the details of the overload situation.
 
+The 4.29 Response Code is only returned to the client(s) sending
+requests too frequently; if other clients are sending requests that
+cannot be served due to server overload, the 5.03 Response Code is
+more appropriate.
+
 If a client repeats a request that was answered with 4.29 before Max-
 Age time has passed, it is possible the client did not recognize the
 error code and the server MAY respond with a more generic error code
