@@ -54,9 +54,9 @@ CoAP Response Codes are similar to the HTTP {{?RFC7230}} Status Codes
 and many codes are shared with similar semantics by both CoAP and
 HTTP. HTTP has the code "429" registered for "Too Many Requests"
 {{RFC6585}}.  This document registers a CoAP Response Code "4.29" for
-similar purpose and also defines use of the Max-Age option  (see
-Section 5.10.5 of {{RFC7252}}) to indicate a back-off period after
-which a client can try the request again.
+similar purpose and uses the Max-Age option (see Section 5.10.5 of
+{{RFC7252}}) to indicate a back-off period after which a client can
+try the request again.
 
 While a server may not be able to respond to one kind of request, it
 may be able to respond to a request of different kind, even from the
@@ -71,9 +71,10 @@ decide how the similarity of the requests should be evaluated.
 
 The 4.29 code is similar to the 5.03 "Service Unavailable" {{RFC7252}}
 code in a way that the 5.03 code can also be used by a server to
-signal an overload situation. However the 4.29 code indicates that the
-too frequent requests from the requesting client are the reason for
-the overload.
+signal an overload situation. The 5.03 code also uses the Max-Age
+option to indicate the time after which a client can retry. However
+the 4.29 code indicates that the too frequent requests from the
+requesting client are the reason for the overload.
 
 # Terminology
 
