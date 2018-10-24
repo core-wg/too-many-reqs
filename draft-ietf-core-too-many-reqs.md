@@ -114,7 +114,9 @@ which may be counterproductive to reducing load.
 
 If a client receives the 4.29 Response Code from a CoAP server to a
 request, it SHOULD NOT send a similar request to the server before the
-time indicated in the Max-Age option has passed.
+time indicated in the Max-Age option has passed. If the 4.29 response
+does not contain a Max-Age option, the default value (60 seconds, as
+defined in Section 5.10.5 of {{RFC7252}}) is assumed.
 
 Note that a client may receive a 4.29 Response Code already on a first
 request to a server. This can happen, for example, if there is a proxy
