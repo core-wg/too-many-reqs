@@ -138,6 +138,9 @@ may not be able to reply at all to some requests.
 
 # Security Considerations {#SecurityConsiderations}
 
+Security considerations of {{RFC7252}} apply also to this Response
+Code.
+
 Replying to CoAP requests with a Response Code consumes resources from
 a server. For a server under attack it may be more appropriate to
 simply drop requests without responding at all. However, dropping
