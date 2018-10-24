@@ -73,7 +73,7 @@ The 4.29 code is similar to the 5.03 "Service Unavailable" {{RFC7252}}
 code in a way that the 5.03 code can also be used by a server to
 signal an overload situation. The 5.03 code also uses the Max-Age
 option to indicate the time after which a client can retry. However
-the 4.29 code indicates that the too frequent requests from the
+the 4.29 code indicates that the too-frequent requests from the
 requesting client are the reason for the overload.
 
 # Terminology
