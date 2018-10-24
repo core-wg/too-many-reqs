@@ -107,12 +107,14 @@ cannot be served due to server overload, the 5.03 Response Code is
 more appropriate.
 
 If a client repeats a request that was answered with 4.29 before Max-
-Age time has passed, it is possible the client did not recognize the
-error code and the server MAY respond with a more generic error code
-(e.g., 5.03). Server MAY also limit how often it answers to a client,
-e.g., to once every estimated RTT (if such estimate is available).
-However, both of these methods add per-client state to the server
-which may be counterproductive to reducing load.
+Age time has passed, it is possible that the client sent multiple
+requests before receiving the first answer or that the client did not
+recognize the Response Code. To slow down clients that do not
+recognize the 4.29 code, the server MAY respond with a more generic
+error code (e.g., 5.03). Server MAY also limit how often it answers to
+a client, e.g., to once every estimated RTT (if such estimate is
+available). However, both of these methods add per-client state to the
+server which may be counterproductive to reducing load.
 
 
 # CoAP Client Behavior
