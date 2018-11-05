@@ -111,10 +111,10 @@ Age time has passed, it is possible that the client sent multiple
 requests before receiving the first answer or that the client did not
 recognize the Response Code. To slow down clients that do not
 recognize the 4.29 code, the server MAY respond with a more generic
-error code (e.g., 5.03). Server MAY also limit how often it answers to
-a client, e.g., to once every estimated RTT (if such estimate is
-available). However, both of these methods add per-client state to the
-server which may be counterproductive to reducing load.
+error code (e.g., 5.03). Server SHOULD rate-limit 4.29 replies taking
+into account its usual load shedding policies. However, any such method
+that adds per-client state to the server may be counterproductive to
+reducing load.
 
 
 # CoAP Client Behavior
