@@ -171,7 +171,8 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 
 * Reference: [[This document]]
 
-
+IANA is requested to add this document as an additional reference for
+the Max-Age option in the "CoAP Option Numbers" sub-registry.
 
 # Acknowledgements {#acks}
 
