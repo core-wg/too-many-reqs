@@ -131,7 +131,7 @@ on the path and the server replies based on the load from multiple
 clients aggregated by the proxy, or if a client has restarted recently
 and does not remember its recent requests.
 
-A client MUST NOT rely on a server being able to send the 4.29
+A client should not rely on a server being able to send the 4.29
 Response Code in an overload situation because an overloaded server
 may not be able to reply at all to some requests.
 
