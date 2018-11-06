@@ -54,9 +54,9 @@ CoAP Response Codes are similar to the HTTP {{?RFC7230}} Status Codes
 and many codes are shared with similar semantics by both CoAP and
 HTTP. HTTP has the code "429" registered for "Too Many Requests"
 {{RFC6585}}.  This document registers a CoAP Response Code "4.29" for
-similar purpose and also defines use of the Max-Age option  (see
-Section 5.10.5 of {{RFC7252}}) to indicate a back-off period after
-which a client can try the request again.
+similar purpose and uses the Max-Age option (see Section 5.10.5 of
+{{RFC7252}}) to indicate a back-off period after which a client can
+try the request again.
 
 While a server may not be able to respond to one kind of request, it
 may be able to respond to a request of different kind, even from the
@@ -71,9 +71,10 @@ decide how the similarity of the requests should be evaluated.
 
 The 4.29 code is similar to the 5.03 "Service Unavailable" {{RFC7252}}
 code in a way that the 5.03 code can also be used by a server to
-signal an overload situation. However the 4.29 code indicates that the
-too frequent requests from the requesting client are the reason for
-the overload.
+signal an overload situation. The 5.03 code also uses the Max-Age
+option to indicate the time after which a client can retry. However
+the 4.29 code indicates that the too-frequent requests from the
+requesting client are the reason for the overload.
 
 # Terminology
 
@@ -100,20 +101,29 @@ An action result payload (see Section 5.5.1 of {{RFC7252}}) can be
 sent by the server to give more guidance to the client, e.g., about
 the details of the overload situation.
 
+The 4.29 Response Code is only returned to the client(s) sending
+requests too frequently; if other clients are sending requests that
+cannot be served due to server overload, the 5.03 Response Code is
+more appropriate.
+
 If a client repeats a request that was answered with 4.29 before Max-
-Age time has passed, it is possible the client did not recognize the
-error code and the server MAY respond with a more generic error code
-(e.g., 5.03). Server MAY also limit how often it answers to a client,
-e.g., to once every estimated RTT (if such estimate is available).
-However, both of these methods add per-client state to the server
-which may be counterproductive to reducing load.
+Age time has passed, it is possible that the client sent multiple
+requests before receiving the first answer or that the client did not
+recognize the Response Code. To slow down clients that do not
+recognize the 4.29 code, the server MAY respond with a more generic
+error code (e.g., 5.03). The server SHOULD rate-limit 4.29 replies
+taking into account its usual load shedding policies. However, any
+such method that adds per-client state to the server may be
+counterproductive to reducing load.
 
 
 # CoAP Client Behavior
 
 If a client receives the 4.29 Response Code from a CoAP server to a
 request, it SHOULD NOT send a similar request to the server before the
-time indicated in the Max-Age option has passed.
+time indicated in the Max-Age option has passed. If the 4.29 response
+does not contain a Max-Age option, the default value (60 seconds, as
+defined in Section 5.10.5 of {{RFC7252}}) is assumed.
 
 Note that a client may receive a 4.29 Response Code already on a first
 request to a server. This can happen, for example, if there is a proxy
@@ -121,12 +131,15 @@ on the path and the server replies based on the load from multiple
 clients aggregated by the proxy, or if a client has restarted recently
 and does not remember its recent requests.
 
-A client MUST NOT rely on a server being able to send the 4.29
+A client should not rely on a server being able to send the 4.29
 Response Code in an overload situation because an overloaded server
 may not be able to reply at all to some requests.
 
 
 # Security Considerations {#SecurityConsiderations}
+
+Security considerations of {{RFC7252}} apply also to this Response
+Code.
 
 Replying to CoAP requests with a Response Code consumes resources from
 a server. For a server under attack it may be more appropriate to
@@ -158,7 +171,8 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 
 * Reference: [[This document]]
 
-
+IANA is requested to add this document as an additional reference for
+the Max-Age option in the "CoAP Option Numbers" sub-registry.
 
 # Acknowledgements {#acks}
 
