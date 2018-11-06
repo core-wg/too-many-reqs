@@ -111,10 +111,10 @@ Age time has passed, it is possible that the client sent multiple
 requests before receiving the first answer or that the client did not
 recognize the Response Code. To slow down clients that do not
 recognize the 4.29 code, the server MAY respond with a more generic
-error code (e.g., 5.03). Server MAY also limit how often it answers to
-a client, e.g., to once every estimated RTT (if such estimate is
-available). However, both of these methods add per-client state to the
-server which may be counterproductive to reducing load.
+error code (e.g., 5.03). The server SHOULD rate-limit 4.29 replies
+taking into account its usual load shedding policies. However, any
+such method that adds per-client state to the server may be
+counterproductive to reducing load.
 
 
 # CoAP Client Behavior
@@ -131,7 +131,7 @@ on the path and the server replies based on the load from multiple
 clients aggregated by the proxy, or if a client has restarted recently
 and does not remember its recent requests.
 
-A client MUST NOT rely on a server being able to send the 4.29
+A client should not rely on a server being able to send the 4.29
 Response Code in an overload situation because an overloaded server
 may not be able to reply at all to some requests.
 
@@ -171,7 +171,8 @@ Parameters Registry", "CoAP Response Codes" sub-registry:
 
 * Reference: [[This document]]
 
-
+IANA is requested to add this document as an additional reference for
+the Max-Age option in the "CoAP Option Numbers" sub-registry.
 
 # Acknowledgements {#acks}
 
